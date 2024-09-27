@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="" />
+    <link rel="icon" type="image" href="./bdayCountdown.png" />
+
+    <title>CEO's Birthday Countdown</title>
+    <style>
+      @font-face {
+        font-family: Hanken;
+        src: url(./HankenGrotesk-VariableFont_wght.ttf);
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: Hanken;
+      }
+      .container {
+        position: relative;
+        background-image: url(./bdayCountdown.png);
+        background-size: contain;
+      }
+      .birthday {
+        background-image: url(./bday.png);
+        background-size: cover;
+      }
+      .logo {
+        width: 120px;
+        cursor: pointer;
+      }
+      .content {
+        color: white;
+        display: flex;
+        padding-left: 40px;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+      }
+      .content > p {
+        font-size: 20px;
+      }
+      h1 {
+        font-size: 64px;
+        font-weight: 600;
+      }
+      h1 span {
+        color: gold;
+      }
+      button {
+        background-color: transparent;
+        width: fit-content;
+        padding: 7px;
+        font-size: 20px;
+        color: white;
+        border-radius: 5px;
+        margin-top: 20px;
+        display: none;
+      }
+      .launch-time {
+        display: flex;
+        text-align: start;
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .launch-time div {
+        flex-basis: 100px;
+        text-align: center;
+        border-radius: 10px;
+        background-color: black;
+      }
+      .launch-time div p {
+        font-size: 60px;
+        margin-bottom: -10px;
+      }
+      a {
+        text-decoration: none;
+      }
+      @media (max-width: 500px) {
+        h1 {
+          font-size: 50px;
+          text-align: center;
+        }
+        .content {
+          padding-left: 0;
+          padding-inline: 10px;
+        }
+        .launch-time div p {
+          font-size: 40px;
+
+          margin-bottom: -10px;
+        }
+        .launch-time div {
+          width: fit-content;
+          padding: 30px;
+          flex-basis: 0;
+        }
+        .launch-time {
+          flex-direction: column;
+          align-items: center;
+        }
+        .content > p {
+          text-align: center;
+        }
+        .btn {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="content">
+        <p id="smalltext">Countdown to CEO's Birthday</p>
+        <h1 id="text">Very <span>Soon</span> Now</h1>
+        <div class="launch-time">
+          <div>
+            <p id="days">00</p>
+            <span>Days</span>
+          </div>
+          <div>
+            <p id="hours">00</p>
+            <span>Hours</span>
+          </div>
+          <div>
+            <p id="minutes">00</p>
+            <span>Minutes</span>
+          </div>
+          <div>
+            <p id="seconds">00</p>
+            <span>Seconds</span>
+          </div>
+        </div>
+        <a href="https://wa.link/zrfb65" class="btn">
+          <button id="link">Wish him well</button>
+        </a>
+      </div>
+    </div>
+    <script>
+      var countDownDate = new Date("Sep 28, 2024 00:00:00").getTime();
+      var x = setInterval(() => {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("smalltext").textContent = "YaY🎂";
+          document.getElementById("text").textContent =
+            "It's CEO's Birthday🎉🥳💃🏼";
+          document.getElementById("container").classList.add("birthday");
+          document.getElementById("link").style.display = "block";
+          document.getElementById("days").textContent = "00";
+          document.getElementById("hours").textContent = "00";
+          document.getElementById("minutes").textContent = "00";
+          document.getElementById("seconds").textContent = "00";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
